@@ -1,0 +1,68 @@
+CONTEXT FOR PROJECT 9 — KINESIS STREAMING PIPELINE
+
+🔹 Background
+I am transitioning from a non-technical BPO role into Data Engineering / Cloud Engineering roles.
+
+I have completed Project 8: 
+“AWS EventBridge-Driven Time-Series Commodity Price ETL & Analytics Pipeline”.
+
+Project 8 architecture:
+- EventBridge Scheduler (1-minute polling)
+- Fetcher Lambda → S3 raw (immutable, time-partitioned)
+- Processor Lambda → S3 cleaned
+- Reporter Lambda → S3 reports (daily aggregation)
+- Gold price data derived from XAU/USD and USD/INR using TwelveData
+- All data stored as JSON
+- IAM, CloudWatch logging enabled
+
+Project 8 outcomes:
+- 60+ minute-level observations
+- Cleaned data layer
+- Aggregated analytics (open, close, high, low, avg, trend)
+- Fully serverless, production-style ETL
+
+I have ALSO completed a formal Data Contract for Project 8:
+- YAML-based data contract
+- Defined schema, constraints, freshness rules
+- This contract is now the source of truth for downstream systems
+
+🔹 What Project 9 Is About
+Project 9 is NOT data contracts anymore.
+Project 9 is about REAL-TIME STREAMING using Amazon Kinesis.
+
+I want to:
+- Reuse the SAME data contract from Project 8
+- Change the ingestion model from polling → streaming
+- Learn Kinesis fundamentals deeply:
+  - Streams
+  - Shards
+  - Partition keys
+  - Ordering guarantees
+  - Throughput limits
+  - Backpressure
+  - Checkpointing
+  - Windowed aggregation
+
+🔹 High-Level Goal
+Build a Kinesis-based streaming pipeline where:
+- Producer pushes gold price events into Kinesis
+- Consumer Lambda reads from Kinesis
+- Data is validated against the existing data contract
+- Data is stored in S3 (raw/cleaned)
+- Aggregations are done via time windows (not daily batch)
+- No overengineering (no Spark, no Glue streaming yet)
+
+🔹 Constraints
+- AWS Free Tier / low cost
+- Small data volume
+- Educational but production-minded
+- Step-by-step build with strong conceptual explanations
+
+🔹 What I Want From You
+- Explain Kinesis clearly before coding
+- Compare polling vs streaming explicitly
+- Design the architecture first
+- Then implement producer → stream → consumer
+- Reuse my Project 8 schema and logic where possible
+
+Start Project 9 cleanly, from first principles.
